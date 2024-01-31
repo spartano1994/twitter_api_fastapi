@@ -1,4 +1,4 @@
 /venv
 *.swf
 /__pycache__
-/twitter/__pycache__
+/twitterTools/__pycache__
