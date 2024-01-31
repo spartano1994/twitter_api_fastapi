@@ -55,7 +55,7 @@ def delete_a_user(  ):
 
 @app.put( path = "/users/{user_id}" , tags = [ "Users" ] , response_model = User , status_code = status.HTTP_202_ACCEPTED , 
          summary = "Delete a user" )
-def update(  ):
+def update( ):
     pass
 
 
