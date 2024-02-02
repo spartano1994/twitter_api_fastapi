@@ -2,3 +2,4 @@
 *.swf
 /__pycache__
 /twitterTools/__pycache__
+/.vscode

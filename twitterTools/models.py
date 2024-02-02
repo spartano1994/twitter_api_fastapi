@@ -1,11 +1,13 @@
-from uuid import UUID
+from uuid import UUID, uuid4  #uuid4 genera un id aleatorio de la clase UUID
 from typing import Optional
 from datetime import datetime as dt
+from datetime import date as d
 
 from pydantic import BaseModel, EmailStr, Field
 
+#User model
 class UserBase( BaseModel ):
-    uder_id : UUID = Field( ... )
+    user_id : UUID = Field( ... , default_factory = uuid4 )
     email : EmailStr = Field( ... )
 
 class UserLogin( UserBase ):
@@ -14,13 +16,16 @@ class UserLogin( UserBase ):
 class User( UserBase ):
     first_name : str = Field( ... , min_length = 1 , max_length = 50 )
     last_name : str = Field( ... , min_length = 1 , max_length = 50 )
-    birth_date : Optional[ dt ] = Field( default = None )
+    birth_date : Optional[ d ] = Field( default = d.today )
+
+class CompleteUser( User , UserLogin ):
+    pass
 
 
 
-
-class Twitter( BaseModel ):
-    tweet_id : UUID = Field( ... )
+#Tweet model
+class Tweet( BaseModel ):
+    tweet_id : UUID = Field( ... , default_factory = uuid4 )
     content : str = Field( ... , min_length = 1 , max_length = 280 )
     created_at : dt = Field( default = dt.now() )
     update_at : Optional[ dt ] = Field( default = None )
